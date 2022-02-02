@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\ClinicManagementSystem.csproj": {}
+    "D:\\apiProject\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\ClinicManagementSystem.csproj": {}
   },
   "projects": {
-    "E:\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\ClinicManagementSystem.csproj": {
+    "D:\\apiProject\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\ClinicManagementSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\ClinicManagementSystem.csproj",
+        "projectUniqueName": "D:\\apiProject\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\ClinicManagementSystem.csproj",
         "projectName": "ClinicManagementSystem",
-        "projectPath": "E:\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\ClinicManagementSystem.csproj",
-        "packagesPath": "C:\\Users\\ashwin.madhu\\.nuget\\packages\\",
-        "outputPath": "E:\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\obj\\",
+        "projectPath": "D:\\apiProject\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\ClinicManagementSystem.csproj",
+        "packagesPath": "C:\\Users\\kadeejath.lubaiba\\.nuget\\packages\\",
+        "outputPath": "D:\\apiProject\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ashwin.madhu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\kadeejath.lubaiba\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
