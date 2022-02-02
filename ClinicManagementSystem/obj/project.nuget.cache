@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FC9Clod0j8j9fgCIIO5RZTy8M5vYL/cjMDzmbMJlSnuWEvdIlOh2737ysGicR0ftx32hEUYT8iqSIG7EIvKGrA==",
+  "dgSpecHash": "j40T2hr++cbu1HpH7gUHiHfUEhJpaxaWcpQ78gj9uANNSalNmoCSf+Z3+PO18BuDT3LmkCjMavzs7PMmwSEcag==",
   "success": true,
-  "projectFilePath": "E:\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\ClinicManagementSystem.csproj",
+  "projectFilePath": "E:\\ApiProject\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\ClinicManagementSystem.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
