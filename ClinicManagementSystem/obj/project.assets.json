@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\ashwin.madhu\\.nuget\\packages\\": {}
+    "C:\\Users\\arathi.r\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\ClinicManagementSystem.csproj",
+      "projectUniqueName": "D:\\ApiProject\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\ClinicManagementSystem.csproj",
       "projectName": "ClinicManagementSystem",
-      "projectPath": "E:\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\ClinicManagementSystem.csproj",
-      "packagesPath": "C:\\Users\\ashwin.madhu\\.nuget\\packages\\",
-      "outputPath": "E:\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\obj\\",
+      "projectPath": "D:\\ApiProject\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\ClinicManagementSystem.csproj",
+      "packagesPath": "C:\\Users\\arathi.r\\.nuget\\packages\\",
+      "outputPath": "D:\\ApiProject\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ashwin.madhu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\arathi.r\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
