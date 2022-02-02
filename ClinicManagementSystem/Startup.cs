@@ -37,18 +37,18 @@ namespace ClinicManagementSystem
 
             services.AddScoped<IDoctorRepo, DoctorRepo>(); 
             services.AddScoped<IAppointmentRepo, AppointmentRepo>();
-            services.AddScoped<IUsersRepo, UsersRepo>();
-            services.AddScoped<IRoleRepo, RoleRepo>();
-            services.AddScoped<IPatientsRepo, PatientsRepo>();
-            services.AddScoped<IMedicineRepo, MedicineRepo>();
-            services.AddScoped<ITestPrescriptionRepo, TestPrescriptionRepo>();
-            services.AddScoped<ITestRepo, TestRepo>();
-            services.AddScoped<ITestReportRepo, TestReportRepo>();
-            services.AddScoped<ITestPriceRepo, TestPriceRepo>();
-            services.AddScoped<IMedicinePrescriptionRepo, MedicinePrescriptionRepo>();
-            services.AddScoped<IMedicineItemPriceRepo, MedicineItemPriceRepo>();
-            services.AddScoped<ISpecializationRepo, SpecializationRepo>();
-            services.AddScoped<IMedicineListRepo, MedicineListRepo>();
+            //services.AddScoped<IUsersRepo, UsersRepo>();
+            //services.AddScoped<IRoleRepo, RoleRepo>();
+            //services.AddScoped<IPatientsRepo, PatientsRepo>();
+            //services.AddScoped<IMedicineRepo, MedicineRepo>();
+            //services.AddScoped<ITestPrescriptionRepo, TestPrescriptionRepo>();
+            //services.AddScoped<ITestRepo, TestRepo>();
+            //services.AddScoped<ITestReportRepo, TestReportRepo>();
+            //services.AddScoped<ITestPriceRepo, TestPriceRepo>();
+            //services.AddScoped<IMedicinePrescriptionRepo, MedicinePrescriptionRepo>();
+            //services.AddScoped<IMedicineItemPriceRepo, MedicineItemPriceRepo>();
+            //services.AddScoped<ISpecializationRepo, SpecializationRepo>();
+            //services.AddScoped<IMedicineListRepo, MedicineListRepo>();
 
       
 
