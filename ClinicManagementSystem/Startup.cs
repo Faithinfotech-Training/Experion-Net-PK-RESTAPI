@@ -46,9 +46,9 @@ namespace ClinicManagementSystem
             //services.AddScoped<ITestReportRepo, TestReportRepo>();
             //services.AddScoped<ITestPriceRepo, TestPriceRepo>();
             //services.AddScoped<IMedicinePrescriptionRepo, MedicinePrescriptionRepo>();
-            //services.AddScoped<IMedicineItemPriceRepo, MedicineItemPriceRepo>();
+            services.AddScoped<IMedicineItemPriceRepo, MedicineItemPriceRepo>();
             //services.AddScoped<ISpecializationRepo, SpecializationRepo>();
-            //services.AddScoped<IMedicineListRepo, MedicineListRepo>();
+            services.AddScoped<IMedicineListRepo, MedicineListRepo>();
 
       
 
