@@ -39,7 +39,7 @@ namespace ClinicManagementSystem
             services.AddScoped<IAppointmentRepo, AppointmentRepo>();
             //services.AddScoped<IUsersRepo, UsersRepo>();
             //services.AddScoped<IRoleRepo, RoleRepo>();
-            //services.AddScoped<IPatientsRepo, PatientsRepo>();
+            services.AddScoped<IPatientsRepo, PatientsRepo>();
             //services.AddScoped<IMedicineRepo, MedicineRepo>();
             //services.AddScoped<ITestPrescriptionRepo, TestPrescriptionRepo>();
             //services.AddScoped<ITestRepo, TestRepo>();
@@ -50,7 +50,7 @@ namespace ClinicManagementSystem
             //services.AddScoped<ISpecializationRepo, SpecializationRepo>();
             //services.AddScoped<IMedicineListRepo, MedicineListRepo>();
 
-      
+
 
 
             //adding services
