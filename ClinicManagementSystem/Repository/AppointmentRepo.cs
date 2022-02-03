@@ -73,6 +73,7 @@ namespace ClinicManagementSystem.Repository
                 where ap.Date == DateTime.Today
                 select new ApointForTodayView
                 {
+                    patientId=(int)pt.PatientId,
                     status = (int)ap.Status,
                     date = (DateTime)ap.Date,
                     firstName = pt.FirstName,

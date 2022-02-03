@@ -37,18 +37,18 @@ namespace ClinicManagementSystem
 
             services.AddScoped<IDoctorRepo, DoctorRepo>(); 
             services.AddScoped<IAppointmentRepo, AppointmentRepo>();
-            //services.AddScoped<IUsersRepo, UsersRepo>();
-            //services.AddScoped<IRoleRepo, RoleRepo>();
-            //services.AddScoped<IPatientsRepo, PatientsRepo>();
-            //services.AddScoped<IMedicineRepo, MedicineRepo>();
-            //services.AddScoped<ITestPrescriptionRepo, TestPrescriptionRepo>();
-            //services.AddScoped<ITestRepo, TestRepo>();
-            //services.AddScoped<ITestReportRepo, TestReportRepo>();
-            //services.AddScoped<ITestPriceRepo, TestPriceRepo>();
-            //services.AddScoped<IMedicinePrescriptionRepo, MedicinePrescriptionRepo>();
-            //services.AddScoped<IMedicineItemPriceRepo, MedicineItemPriceRepo>();
-            //services.AddScoped<ISpecializationRepo, SpecializationRepo>();
-            //services.AddScoped<IMedicineListRepo, MedicineListRepo>();
+            services.AddScoped<IUsersRepo, UsersRepo>();
+            services.AddScoped<IRoleRepo, RoleRepo>();
+            services.AddScoped<IPatientsRepo, PatientsRepo>();
+            services.AddScoped<IMedicineRepo, MedicineRepo>();
+            services.AddScoped<ITestPrescriptionRepo, TestPrescriptionRepo>();
+            services.AddScoped<ITestRepo, TestRepo>();
+            services.AddScoped<ITestReportRepo, TestReportRepo>();
+            services.AddScoped<ITestPriceRepo, TestPriceRepo>();
+            services.AddScoped<IMedicinePrescriptionRepo, MedicinePrescriptionRepo>();
+            services.AddScoped<IMedicineItemPriceRepo, MedicineItemPriceRepo>();
+            services.AddScoped<ISpecializationRepo, SpecializationRepo>();
+            services.AddScoped<IMedicineListRepo, MedicineListRepo>();
 
       
 
@@ -70,6 +70,8 @@ namespace ClinicManagementSystem
                 });
 
 
+            services.AddCors();
+
         }
 
 
@@ -87,6 +89,13 @@ namespace ClinicManagementSystem
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            app.UseCors(option =>
+            option.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            );
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

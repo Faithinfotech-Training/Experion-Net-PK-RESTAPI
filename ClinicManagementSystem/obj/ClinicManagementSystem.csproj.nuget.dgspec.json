@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\ClinicManagementSystem.csproj": {}
+    "E:\\ClinicManagementSystem\\ClinicManagementSystem.csproj": {}
   },
   "projects": {
-    "E:\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\ClinicManagementSystem.csproj": {
+    "E:\\ClinicManagementSystem\\ClinicManagementSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\ClinicManagementSystem.csproj",
+        "projectUniqueName": "E:\\ClinicManagementSystem\\ClinicManagementSystem.csproj",
         "projectName": "ClinicManagementSystem",
-        "projectPath": "E:\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\ClinicManagementSystem.csproj",
+        "projectPath": "E:\\ClinicManagementSystem\\ClinicManagementSystem.csproj",
         "packagesPath": "C:\\Users\\ashwin.madhu\\.nuget\\packages\\",
-        "outputPath": "E:\\Experion-Net-PK-RESTAPI\\ClinicManagementSystem\\obj\\",
+        "outputPath": "E:\\ClinicManagementSystem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ashwin.madhu\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Microsoft.AspNet.WebApi.Cors": {
+              "target": "Package",
+              "version": "[5.2.7, )"
+            },
             "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",
               "version": "[3.1.0, )"
