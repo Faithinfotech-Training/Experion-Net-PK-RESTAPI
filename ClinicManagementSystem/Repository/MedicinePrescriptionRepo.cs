@@ -47,8 +47,58 @@ namespace ClinicManagementSystem.Repository
         }
 
 
-        //------------------Get MedicinePrescription For An Appointment-------------------------------------------------------------
-        public async Task<MedPrescAppointView> GetAllMedPrescribedInAnAppointment(int id)
+        //-----------------------------Medicine Prescription for the Day----------------------------------------------------------
+
+        public async Task<List<MedPrescAppointView>> GetAllMedPrescriptionForTheDay()
+        {
+            return await (
+                (from ap in _db.Appointment
+                 join pt in _db.Patient
+                 on ap.PatientId equals pt.PatientId
+
+                 join doc in _db.Doctor
+                 on ap.DoctorId equals doc.DoctorId
+
+                 join usr in _db.Users
+                 on doc.UserId equals usr.UserId
+
+                 join rl in _db.Role
+                 on usr.RoleId equals rl.RoleId
+
+                 join medPres in _db.MedicinePrescription
+                 on ap.AppointmentId equals medPres.AppointmentId
+
+
+                 join usrP in _db.Users
+                 on medPres.PharmacistId equals usrP.UserId
+
+                 join rlP in _db.Role
+                 on usrP.RoleId equals rlP.RoleId
+
+                 where ap.Date == DateTime.Today
+                 select new MedPrescAppointView
+                 {
+                     appointmentId = ap.AppointmentId,
+                     patientId = pt.PatientId,
+                     status = (int)ap.Status,
+                     date = (DateTime)ap.Date,
+                     firstName = pt.FirstName,
+                     lastName = pt.LastName,
+                     docFirstName = usr.FirstName,
+                     docLastName = usr.LastName
+                 ,
+                     token = (int)ap.TokenNumber
+                 ,
+                     pharmaFirstName = usrP.FirstName
+                 ,
+                     pharmaLastName = usrP.LastName
+                 }).ToListAsync()
+                );
+        }
+
+
+            //------------------Get MedicinePrescription For An Appointment-------------------------------------------------------------
+            public async Task<MedPrescAppointView> GetAllMedPrescribedInAnAppointment(int id)
         {
             var tempObj = await (from ap in _db.Appointment
                                  join pt in _db.Patient
@@ -78,10 +128,11 @@ namespace ClinicManagementSystem.Repository
                                  join rlP in _db.Role
                                  on usrP.RoleId equals rlP.RoleId
 
-                                 where rlP.RoleId == 4 && rl.RoleId == 2 && ap.AppointmentId == id
+                                 where ap.AppointmentId == id
 
                                  select new
                                  {
+                                     appointmentId=ap.AppointmentId,
                                      patientId = pt.PatientId,
                                      staus = ap.Status,
                                      date = ap.Date,

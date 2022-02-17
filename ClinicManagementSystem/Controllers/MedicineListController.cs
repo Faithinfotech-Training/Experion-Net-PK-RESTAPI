@@ -49,14 +49,14 @@ namespace ClinicManagementSystem.Controllers
         }
 
         //Add MedicineList
-        [HttpPost]
-        public async Task<IActionResult> AddMedicineList([FromBody] MedicineList medList)
+        [HttpPost("{appoint}")]
+        public async Task<IActionResult> AddMedicineList([FromBody] MedicineList medList,int appoint)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var postId = await _intrface.AddMedicineList(medList);
+                    var postId = await _intrface.AddMedicineList(medList,appoint);
                     if (postId > 0)
                     {
                         return Ok(postId);
@@ -98,6 +98,13 @@ namespace ClinicManagementSystem.Controllers
         public async Task<int> AddPresThenList(MedPresAndMedListInsertObject obj)
         {
             return await _intrface.AddPresThenList(obj);
+        }
+
+        [HttpDelete("{id}")]
+
+        public async Task RemoveMedFromList(int id)
+        {
+             await _intrface.RemoveMedFromList(id);
         }
 
     }

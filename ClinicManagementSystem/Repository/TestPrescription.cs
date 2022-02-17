@@ -58,5 +58,35 @@ namespace ClinicManagementSystem.Repository
             return null;
         }
 
+        //---------------Get All Patients Having Test Prescribed For the Day----------------------------------------------------
+        public async Task<List<PatinetsHavingTests>> GetAllTestPrescribedForTheDay()
+        {
+            return await (
+                (from ap in _db.Appointment
+                 join pt in _db.Patient
+                 on ap.PatientId equals pt.PatientId
+                 join doc in _db.Doctor
+                 on ap.DoctorId equals doc.DoctorId
+                 join usr in _db.Users
+                 on doc.UserId equals usr.UserId
+                 join testPres in _db.TestPrescription
+                 on ap.AppointmentId equals testPres.AppointmentId
+                 where ap.Date == DateTime.Today
+                 select new PatinetsHavingTests
+                 {
+                     AppointmentId=ap.AppointmentId,
+                     PatientId = pt.PatientId,
+                     Status = (int)ap.Status,
+                     Date = (DateTime)ap.Date,
+                     TestPrescriptionID = testPres.TestPrescriptionId,
+                     FirstName = pt.FirstName,
+                     LastName = pt.LastName,
+                     DocFirstName = usr.FirstName,
+                     DocLastName = usr.LastName,
+                     Token = (int)ap.TokenNumber
+                 }).ToListAsync()
+                );
+        }
+
     }
 }

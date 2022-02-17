@@ -56,6 +56,26 @@ namespace ClinicManagementSystem.Controllers
             }
         }
 
+
+        //GET By Doc Id
+        [HttpGet("doctors/{id}")]
+        public async Task<ActionResult<List<ApointForTodayView>>> GetAllApointmentForTheDayFoADoctor(int id)
+        {
+            try
+            {
+                var result = await _intrface.GetAllApointmentForTheDayFoADoctor(id);
+                if (result == null)
+                {
+                    return NotFound();
+                }
+                return result; //return Ok(employee)
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         //Add Appointment
         [HttpPost]
         public async Task<IActionResult> AddAppointment([FromBody] Appointment apnt)
@@ -101,6 +121,15 @@ namespace ClinicManagementSystem.Controllers
             }
             return BadRequest();
         }
+
+        [HttpGet("token/{date}")]
+
+        public int GetNextToken(DateTime date)
+        {
+            return _intrface.GetNextToken(date)+1;
+        }
+
+
 
     }
 }

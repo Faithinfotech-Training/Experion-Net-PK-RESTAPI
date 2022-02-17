@@ -17,5 +17,7 @@ namespace ClinicManagementSystem.Repository
         //Get By Id
         Task<TestReport> GetByTestReportId(int a);
         Task<List<TestReport>> GetAllTestReport();
+
+        Task<List<TestReportUsingTestPrescriptionId>> GetAllTestReportDetailsUsingAppointId(int id);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ClinicManagementSystem.Models;
 using ClinicManagementSystem.Repository;
+using ClinicManagementSystem.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -94,6 +95,28 @@ namespace ClinicManagementSystem.Controllers
                 }
             }
             return BadRequest();
+        }
+
+
+        [HttpPost("doctor")]
+
+        public async Task<int> AddDoctor([FromBody] AddDoctorView user)
+        {
+            return await _intrface.AddDoctor(user);
+        }
+
+
+        [HttpPut("doctors")]
+
+        public async Task UpdDoctor(AddDoctorView usr)
+        {
+            await _intrface.UpdDoctor(usr);
+        }
+
+        [HttpGet("doctors/{Id}")]
+        public async Task<AddDoctorView> GetDoctorDetailsByUserID(int id)
+        {
+            return await _intrface.GetDoctorDetailsByUserID(id);
         }
 
     }

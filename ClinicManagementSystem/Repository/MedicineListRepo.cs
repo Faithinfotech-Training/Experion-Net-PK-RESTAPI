@@ -26,11 +26,22 @@ namespace ClinicManagementSystem.Repository
 
 
         //------------------Add MedicineList--------------------------------------------------------------------------
-        public async Task<int> AddMedicineList(MedicineList medList)
+        public async Task<int> AddMedicineList(MedicineList medList,int appoint)
         {
             if (_db != null)
 
             {
+                var temp = await _db.MedicinePrescription.Where(x => x.AppointmentId == appoint).FirstOrDefaultAsync();
+                if(temp==null)
+                {
+                    MedicinePrescription tempMedP = new MedicinePrescription();
+                    tempMedP.AppointmentId = appoint;
+                    tempMedP.Status = 1;
+                   await _db.MedicinePrescription.AddAsync(tempMedP);
+                   await _db.SaveChangesAsync();
+                }
+                temp = await _db.MedicinePrescription.Where(x => x.AppointmentId == appoint).FirstOrDefaultAsync();
+                medList.MedicinePrescriptionId = temp.MedicinePrescriptionId;
                 await _db.MedicineList.AddAsync(medList);
                 await _db.SaveChangesAsync();
                 return medList.MedicineListId;
@@ -82,6 +93,14 @@ namespace ClinicManagementSystem.Repository
                 await _db.SaveChangesAsync();
             }
             return 0;
+        }
+
+
+        public async Task RemoveMedFromList(int id)
+        {
+            var delObj = _db.MedicineList.Find(id);
+            _db.Remove(delObj);
+            await _db.SaveChangesAsync();
         }
     }
 }

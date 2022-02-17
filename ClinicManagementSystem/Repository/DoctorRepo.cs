@@ -58,7 +58,7 @@ namespace ClinicManagementSystem.Repository
             return null;
         }
 
-        public async Task<List<AllDrSpView>> GetAllDrSp()
+        public async Task<List<AllDrSpView>> GetAllDrSp(int id)
         {
             return await (
                 (from doc in _db.Doctor
@@ -66,6 +66,7 @@ namespace ClinicManagementSystem.Repository
                  on doc.UserId equals usr.UserId
                  join sp in _db.Specialization
                  on doc.SpecializationId equals sp.SpecializationId
+                 where sp.SpecializationId==id
                  select new AllDrSpView
                  {
                      doctorId = doc.DoctorId,

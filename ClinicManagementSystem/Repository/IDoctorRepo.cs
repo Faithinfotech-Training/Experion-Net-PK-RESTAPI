@@ -9,7 +9,7 @@ namespace ClinicManagementSystem.Repository
 {
     public interface IDoctorRepo
     {
-        Task<List<AllDrSpView>> GetAllDrSp();
+        Task<List<AllDrSpView>> GetAllDrSp(int id);
 
         Task<int> AddDoctor(Doctor doc);
 

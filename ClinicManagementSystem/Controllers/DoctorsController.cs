@@ -24,10 +24,10 @@ namespace ClinicManagementSystem.Controllers
         }
 
         // GET: api/<DoctorController>/specialisation
-        [HttpGet("specialisation")]
-        public async Task<List<AllDrSpView>> GetAllDrSp()
+        [HttpGet("specialisation/{id}")]
+        public async Task<List<AllDrSpView>> GetAllDrSp(int id)
         {
-            return await _intrface.GetAllDrSp();
+            return await _intrface.GetAllDrSp(id);
         }
 
         //Get Raw Table Data

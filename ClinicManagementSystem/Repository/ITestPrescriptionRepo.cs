@@ -17,5 +17,7 @@ namespace ClinicManagementSystem.Repository
         //Get By Id
         Task<TestPrescription> GetByTestPrescriptionId(int a);
         Task<List<TestPrescription>> GetAllTestPrescription();
+
+        Task<List<PatinetsHavingTests>> GetAllTestPrescribedForTheDay();
     }
 }

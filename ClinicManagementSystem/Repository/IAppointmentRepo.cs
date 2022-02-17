@@ -12,6 +12,7 @@ namespace ClinicManagementSystem.Repository
         
         Task<List<ApointForTodayView>> GetAllApointmentForTheDay();
 
+        Task<List<ApointForTodayView>> GetAllApointmentForTheDayFoADoctor(int id);
         Task<int> AddAppointment(Appointment apnt);
 
         Task UpdateAppointment(Appointment apnt);
@@ -20,5 +21,10 @@ namespace ClinicManagementSystem.Repository
         Task<Appointment> GetAppointmentById(int a);
 
         Task<List<Appointment>> GetAllAppointment();
+
+        
+
+        int GetNextToken(DateTime appointDate);
+
     }
 }

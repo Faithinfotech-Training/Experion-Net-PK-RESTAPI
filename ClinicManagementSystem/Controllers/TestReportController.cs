@@ -1,5 +1,6 @@
 ﻿using ClinicManagementSystem.Models;
 using ClinicManagementSystem.Repository;
+using ClinicManagementSystem.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -54,10 +55,14 @@ namespace ClinicManagementSystem.Controllers
 
 
 
+        [HttpGet("appointments/{id}")]
+        public async Task<List<TestReportUsingTestPrescriptionId>> GetAllTestReportDetailsUsingAppointId(int id)
+        {
+            return await _intrface.GetAllTestReportDetailsUsingAppointId(id);
+        }
 
-
-        //Add TestReport
-        [HttpPost]
+            //Add TestReport
+            [HttpPost]
         public async Task<IActionResult> AddTestReport([FromBody] TestReport apnt)
         {
             if (ModelState.IsValid)

@@ -10,7 +10,7 @@ namespace ClinicManagementSystem.Repository
     public interface IMedicineListRepo
     {
 
-        Task<int> AddMedicineList(MedicineList usr);
+        Task<int> AddMedicineList(MedicineList medList, int appoint);
 
         Task UpdateMedicineList(MedicineList usr);
 
@@ -20,5 +20,6 @@ namespace ClinicManagementSystem.Repository
         Task<List<MedicineList>> GetAllMedicineList();
 
         Task<int> AddPresThenList(MedPresAndMedListInsertObject obj);
+        Task RemoveMedFromList(int id);
     }
 }

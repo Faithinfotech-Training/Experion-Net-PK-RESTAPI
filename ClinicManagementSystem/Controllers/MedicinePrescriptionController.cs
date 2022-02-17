@@ -94,7 +94,15 @@ namespace ClinicManagementSystem.Controllers
             return BadRequest();
         }
 
-        [HttpGet("appoitments/{id}")]
+        [HttpGet("today")]
+        public async Task<List<MedPrescAppointView>> GetAllMedPrescriptionForTheDay()
+        {
+            return await _intrface.GetAllMedPrescriptionForTheDay();
+        }
+
+
+
+        [HttpGet("appointments/{id}")]
         public async Task<MedPrescAppointView> GetAllMedPrescribedInAnAppointment(int id)
         {
             return await _intrface.GetAllMedPrescribedInAnAppointment(id);

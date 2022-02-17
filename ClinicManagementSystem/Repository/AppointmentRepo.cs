@@ -73,7 +73,9 @@ namespace ClinicManagementSystem.Repository
                 where ap.Date == DateTime.Today
                 select new ApointForTodayView
                 {
-                    patientId=(int)pt.PatientId,
+                    appointmentId=ap.AppointmentId,
+                    time=Convert.ToDateTime(ap.Time).ToString("HH:mm"),
+                    patientId =(int)pt.PatientId,
                     status = (int)ap.Status,
                     date = (DateTime)ap.Date,
                     firstName = pt.FirstName,
@@ -85,8 +87,58 @@ namespace ClinicManagementSystem.Repository
                 );
         }
 
-        
 
 
+        //------------------View - View Model Appointment For a Docttor-------------------------------------------------------------
+        public async Task<List<ApointForTodayView>> GetAllApointmentForTheDayFoADoctor(int id)
+        {
+            return await (
+
+              (from ap in _db.Appointment
+               join pt in _db.Patient
+               on ap.PatientId equals pt.PatientId
+               join doc in _db.Doctor
+               on ap.DoctorId equals doc.DoctorId
+               join usr in _db.Users
+               on doc.UserId equals usr.UserId
+               where ap.Date == DateTime.Today && doc.UserId == id
+               select new ApointForTodayView
+               {
+                
+                   appointmentId=ap.AppointmentId,
+                   patientId = (int)pt.PatientId,
+                   status = (int)ap.Status,
+                   date = (DateTime)ap.Date,
+                   time= Convert.ToDateTime(ap.Time).ToString("HH:mm"),
+                   firstName = pt.FirstName, 
+                   lastName = pt.LastName,
+                   docFirstName = usr.FirstName,
+                   docLastName = usr.LastName,
+                   token = (int)ap.TokenNumber
+               }).ToListAsync()
+               );
+        }
+
+
+        //----------------------------Next Token ------------------------------------------------------------------------------------
+
+        public  int GetNextToken(DateTime appointDate)
+        {
+            if(_db.Appointment.Where(x=>x.Date== appointDate).Count()==0)
+            {
+                return 0;
+            }
+            return (
+                (int)(from ap in _db.Appointment
+                 where ap.Date == appointDate
+                 select ap.TokenNumber).Max(x => x)
+                );
+        }
+
+
+        public async Task patchUpdAppointment()
+        {
+
+        }
     }
 }

@@ -21,5 +21,7 @@ namespace ClinicManagementSystem.Repository
 
         //View For List Of Medicine Prescribed in an Appointment
         Task<MedPrescAppointView> GetAllMedPrescribedInAnAppointment(int id);
+
+        Task<List<MedPrescAppointView>> GetAllMedPrescriptionForTheDay();
     }
 }

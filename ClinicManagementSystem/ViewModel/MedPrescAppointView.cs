@@ -7,6 +7,7 @@ namespace ClinicManagementSystem.ViewModel
 {
     public class MedPrescAppointView
     {
+        public int appointmentId;
         public int patientId;
         public int status;
         public DateTime date;

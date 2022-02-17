@@ -1,5 +1,6 @@
 ﻿using ClinicManagementSystem.Models;
 using ClinicManagementSystem.Repository;
+using ClinicManagementSystem.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -28,11 +29,15 @@ namespace ClinicManagementSystem.Controllers
             return await _intrface.GetAllTestPrescription();
         }
 
+        [HttpGet("todaysTests")]
+        public async Task<List<PatinetsHavingTests>> GetAllTestPrescribedForTheDay()
+        {
+            return await _intrface.GetAllTestPrescribedForTheDay();
+        }
 
 
-
-        //GET By Id
-        [HttpGet("{id}")]
+            //GET By Id
+            [HttpGet("{id}")]
         public async Task<ActionResult<TestPrescription>> GetTestPrescriptionById(int id)
         {
             try
