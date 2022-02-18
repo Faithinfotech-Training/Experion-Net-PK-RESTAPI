@@ -29,6 +29,7 @@ namespace ClinicManagementSystem.Repository
             if (_db != null)
 
             {
+                apnt.Status = 1;
                 await _db.Appointment.AddAsync(apnt);
                 await _db.SaveChangesAsync();
                 return apnt.AppointmentId;
@@ -101,7 +102,7 @@ namespace ClinicManagementSystem.Repository
                on ap.DoctorId equals doc.DoctorId
                join usr in _db.Users
                on doc.UserId equals usr.UserId
-               where ap.Date == DateTime.Today && doc.UserId == id
+               where ap.Date == DateTime.Today && doc.UserId == id && ap.Status==1
                select new ApointForTodayView
                {
                 
@@ -135,10 +136,37 @@ namespace ClinicManagementSystem.Repository
                 );
         }
 
+        //----------------------------ALL APPOINTEMNT OF A PATIENT------------------------------------------------------------------
 
-        public async Task patchUpdAppointment()
+        public async Task<List<ApointForTodayView>> GetAllAppointmentOfAPatient(int id)
         {
+            return await(
 
+              (from ap in _db.Appointment
+               join pt in _db.Patient
+               on ap.PatientId equals pt.PatientId
+               join doc in _db.Doctor
+               on ap.DoctorId equals doc.DoctorId
+               join usr in _db.Users
+               on doc.UserId equals usr.UserId
+               where pt.PatientId == id
+               select new ApointForTodayView
+               {
+
+                   appointmentId = ap.AppointmentId,
+                   patientId = (int)pt.PatientId,
+                   status = (int)ap.Status,
+                   date = (DateTime)ap.Date,
+                   time = Convert.ToDateTime(ap.Time).ToString("HH:mm"),
+                   firstName = pt.FirstName,
+                   lastName = pt.LastName,
+                   docFirstName = usr.FirstName,
+                   docLastName = usr.LastName,
+                   token = (int)ap.TokenNumber
+               }).ToListAsync()
+               );
         }
+
+
     }
 }

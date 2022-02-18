@@ -22,7 +22,8 @@ namespace ClinicManagementSystem.Repository
 
         Task<List<Appointment>> GetAllAppointment();
 
-        
+        //ApointForTodayView is used here becoz it have all the details which i want for the.. All appointments for a patients 
+        Task<List<ApointForTodayView>> GetAllAppointmentOfAPatient(int id);
 
         int GetNextToken(DateTime appointDate);
 

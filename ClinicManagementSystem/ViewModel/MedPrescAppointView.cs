@@ -10,14 +10,16 @@ namespace ClinicManagementSystem.ViewModel
         public int appointmentId;
         public int patientId;
         public int status;
+        public string time;
         public DateTime date;
+        public string generalNotes;
         public string firstName;
         public string lastName;
         public string docFirstName;
         public string docLastName;
         public int token;
-        public List<string> medName = new List<string>();
-        public string pharmaFirstName;
-        public string pharmaLastName;
+        public List<medicineWithMedId> medName = new List<medicineWithMedId>();
+        //public string pharmaFirstName;
+        //public string pharmaLastName;
     }
 }

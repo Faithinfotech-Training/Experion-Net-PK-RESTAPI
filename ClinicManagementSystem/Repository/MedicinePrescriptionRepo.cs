@@ -69,11 +69,9 @@ namespace ClinicManagementSystem.Repository
                  on ap.AppointmentId equals medPres.AppointmentId
 
 
-                 join usrP in _db.Users
-                 on medPres.PharmacistId equals usrP.UserId
 
-                 join rlP in _db.Role
-                 on usrP.RoleId equals rlP.RoleId
+
+                
 
                  where ap.Date == DateTime.Today
                  select new MedPrescAppointView
@@ -88,10 +86,6 @@ namespace ClinicManagementSystem.Repository
                      docLastName = usr.LastName
                  ,
                      token = (int)ap.TokenNumber
-                 ,
-                     pharmaFirstName = usrP.FirstName
-                 ,
-                     pharmaLastName = usrP.LastName
                  }).ToListAsync()
                 );
         }
@@ -116,26 +110,29 @@ namespace ClinicManagementSystem.Repository
                                  join medPres in _db.MedicinePrescription
                                  on ap.AppointmentId equals medPres.AppointmentId
 
+                                 join general in _db.GeneralNotes
+                                 on ap.AppointmentId equals general.AppointmentId
+
                                  join medL in _db.MedicineList
                                  on medPres.MedicinePrescriptionId equals medL.MedicinePrescriptionId
 
                                  join med in _db.Medicine
                                  on medL.MedicineId equals med.MedicineId
 
-                                 join usrP in _db.Users
-                                 on medPres.PharmacistId equals usrP.UserId
 
-                                 join rlP in _db.Role
-                                 on usrP.RoleId equals rlP.RoleId
 
                                  where ap.AppointmentId == id
 
                                  select new
                                  {
-                                     appointmentId=ap.AppointmentId,
+                                     time=ap.Time,
+                                     general=general.Notes,
+                                     medId=med.MedicineId,
+                                     appointmentId =ap.AppointmentId,
                                      patientId = pt.PatientId,
                                      staus = ap.Status,
                                      date = ap.Date,
+                                     doze=medL.Doze,
                                      firstName = pt.FirstName,
                                      lastName = pt.LastName,
                                      docFirstName = usr.FirstName,
@@ -144,10 +141,6 @@ namespace ClinicManagementSystem.Repository
                                      token = ap.TokenNumber
                                  ,
                                      medName = med.Name
-                                 ,
-                                     pharmaFirstName = usrP.FirstName
-                                 ,
-                                     pharmaLastName = usrP.LastName
                                  }).ToListAsync();
 
             var result = tempObj.GroupBy(x=>x.patientId);
@@ -160,20 +153,21 @@ namespace ClinicManagementSystem.Repository
                 objResult.patientId = patientGroup.Key;
                 foreach(var patient in patientGroup)
                 {
+                    objResult.generalNotes = patient.general;
+                    objResult.time = Convert.ToDateTime(patient.time).ToString("HH:mm");
                     objResult.patientId = patient.patientId;
                     objResult.firstName = patient.firstName;
                     objResult.lastName = patient.lastName;
-                    objResult.medName.Add(patient.medName);
+                    medicineWithMedId medObj = new medicineWithMedId();
+                    medObj.medName = patient.medName;
+                    medObj.medId = patient.medId;
+                    medObj.doze = (int)patient.doze;
+                    objResult.medName.Add(medObj);
                     objResult.date = (DateTime)patient.date;
                     objResult.status = (int) patient.staus;
                     objResult.docFirstName = patient.docFirstName;
                     objResult.docLastName = patient.docLastName;
                     objResult.token = (int)patient.token;
-                    objResult.pharmaFirstName = patient.pharmaFirstName;
-                    objResult.pharmaLastName = patient.pharmaLastName;
-
-                    
-   
                 }
             }
 

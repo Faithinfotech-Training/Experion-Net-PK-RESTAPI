@@ -122,13 +122,22 @@ namespace ClinicManagementSystem.Controllers
             return BadRequest();
         }
 
+        //Gnerate Token for the date
         [HttpGet("token/{date}")]
-
         public int GetNextToken(DateTime date)
         {
             return _intrface.GetNextToken(date)+1;
         }
 
+        //All Appointments of A Patients
+        [HttpGet("patients/{id}")]
+        public async Task<List<ApointForTodayView>> GetAllAppointmentOfAPatient(int id)
+        {
+            return await (
+                _intrface.GetAllAppointmentOfAPatient(id)
+                );
+
+        }
 
 
     }

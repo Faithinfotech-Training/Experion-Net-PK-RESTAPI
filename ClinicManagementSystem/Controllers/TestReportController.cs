@@ -56,20 +56,20 @@ namespace ClinicManagementSystem.Controllers
 
 
         [HttpGet("appointments/{id}")]
-        public async Task<List<TestReportUsingTestPrescriptionId>> GetAllTestReportDetailsUsingAppointId(int id)
+        public async Task<List<TestReportUsingAppointId>> GetAllTestReportDetailsUsingAppointId(int id)
         {
             return await _intrface.GetAllTestReportDetailsUsingAppointId(id);
         }
 
-            //Add TestReport
-            [HttpPost]
-        public async Task<IActionResult> AddTestReport([FromBody] TestReport apnt)
+        //Add TestReport
+        [HttpPost("{appointId}")]
+        public async Task<IActionResult> AddTestReport([FromBody] TestReport apnt, int appointId)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var postId = await _intrface.AddTestReport(apnt);
+                    var postId = await _intrface.AddTestReport(apnt, appointId);
                     if (postId > 0)
                     {
                         return Ok(postId);
@@ -89,8 +89,8 @@ namespace ClinicManagementSystem.Controllers
 
 
         //Update TestReport
-        [HttpPut]
-        public async Task<IActionResult> UpdTestReport([FromBody] TestReport apnt)
+        [HttpPatch]
+        public async Task<IActionResult> UpdTestReport([FromBody] PatchTestValueOfReport apnt)
         {
             if (ModelState.IsValid)
             {
@@ -105,6 +105,14 @@ namespace ClinicManagementSystem.Controllers
                 }
             }
             return BadRequest();
+        }
+
+
+        [HttpDelete("{id}")]
+
+        public async Task DeleteFromReportList(int id)
+        {
+            await _intrface.deleteFromList(id);
         }
 
     }

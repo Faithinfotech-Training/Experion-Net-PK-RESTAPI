@@ -38,6 +38,10 @@ namespace ClinicManagementSystem.Repository
                     await _db.SaveChangesAsync();
 
                 }
+                var temp2= await _db.Appointment.Where(x => x.AppointmentId == notes.AppointmentId).FirstOrDefaultAsync();
+                temp2.Status = 0;
+                await _db.SaveChangesAsync();
+
                 await _db.GeneralNotes.AddAsync(notes);
                 await _db.SaveChangesAsync();
                 return notes.GeneralNoteId;

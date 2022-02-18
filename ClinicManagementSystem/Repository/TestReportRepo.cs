@@ -26,11 +26,22 @@ namespace ClinicManagementSystem.Repository
 
 
         //------------------Add TestReport--------------------------------------------------------------------------
-        public async Task<int> AddTestReport(TestReport tstRp)
+        public async Task<int> AddTestReport(TestReport tstRp,int appointId)
         {
             if (_db != null)
 
             {
+                var temp = _db.TestPrescription.Where(x => x.AppointmentId == appointId).FirstOrDefault();
+                if(temp==null)
+                {
+                    TestPrescription testPre = new TestPrescription();
+                    testPre.AppointmentId = appointId;
+                    testPre.Status = 1;
+                    await _db.TestPrescription.AddAsync(testPre);
+                    await _db.SaveChangesAsync();
+                }
+                temp = _db.TestPrescription.Where(x => x.AppointmentId == appointId).FirstOrDefault();
+                tstRp.TestPrescriptionId = temp.TestPrescriptionId;
                 await _db.TestReport.AddAsync(tstRp);
                 await _db.SaveChangesAsync();
                 return tstRp.TestReportId;
@@ -38,11 +49,11 @@ namespace ClinicManagementSystem.Repository
             return 0;
         }
 
-        //------------------Update TestReport--------------------------------------------------------------------------
-        public async Task UpdateTestReport(TestReport tstRp)
+        //------------------Update TestReport- Patch--------------------------------------------------------------------------
+        public async Task UpdateTestReport(PatchTestValueOfReport tstRp)
         {
-            _db.Entry(tstRp).State = EntityState.Modified;
-            _db.TestReport.Update(tstRp);
+           var updTestRp= _db.TestReport.Find(tstRp.TestReportId);
+            updTestRp.TestValue = tstRp.TestValue;
             await _db.SaveChangesAsync();
         }
 
@@ -59,7 +70,7 @@ namespace ClinicManagementSystem.Repository
 
         //------------------Get TestReport And all Details Using Appointment Id / Can Use That Same for geting using TestPrescriptionId--------------------------------------------------------------------------
 
-        public async Task<List<TestReportUsingTestPrescriptionId>> GetAllTestReportDetailsUsingAppointId(int id)
+        public async Task<List<TestReportUsingAppointId>> GetAllTestReportDetailsUsingAppointId(int id)
         {
             return await (
                 (from ap in _db.Appointment
@@ -76,8 +87,9 @@ namespace ClinicManagementSystem.Repository
                  join tst in _db.Test
                  on testR.TestId equals tst.TestId
                  where ap.AppointmentId == id
-                 select new TestReportUsingTestPrescriptionId
+                 select new TestReportUsingAppointId
                  {
+                     testReportId=testR.TestReportId,
                      unit=tst.Unit,
                      patientId = pt.PatientId,
                      status = (int)ap.Status,
@@ -98,6 +110,12 @@ namespace ClinicManagementSystem.Repository
                      testName = tst.TestName
                  }).ToListAsync()
                 );
+        }
+
+        public async Task deleteFromList(int id)
+        {
+            _db.TestReport.Remove(_db.TestReport.Find(id));
+            await _db.SaveChangesAsync();
         }
     }
 }

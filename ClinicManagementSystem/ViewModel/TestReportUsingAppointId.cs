@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace ClinicManagementSystem.ViewModel
 {
-    public class TestReportUsingTestPrescriptionId
+    public class TestReportUsingAppointId
     {
+        public int testReportId { get; set; }
         public int patientId { get; set; } 
         public string unit { get; set; }
         public int status { get; set; }
