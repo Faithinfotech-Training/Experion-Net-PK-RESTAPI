@@ -83,15 +83,15 @@ namespace ClinicManagementSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                try
-                {
+                //try
+                //{
                     await _intrface.UpdateTest(apnt);
                     return Ok();
-                }
-                catch (Exception)
-                {
-                    return BadRequest();
-                }
+                //}
+                //catch (Exception)
+                //{
+                //    return BadRequest();
+                //}
             }
             return BadRequest();
         }

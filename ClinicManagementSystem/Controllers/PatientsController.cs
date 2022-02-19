@@ -1,5 +1,6 @@
 ﻿using ClinicManagementSystem.Models;
 using ClinicManagementSystem.Repository;
+using ClinicManagementSystem.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -93,6 +94,13 @@ namespace ClinicManagementSystem.Controllers
                 }
             }
             return BadRequest();
+        }
+
+
+        [HttpGet("bill/{AppointmentId}")]
+        public async Task<BillDetails> GetBill(int AppointmentId)
+        {
+            return await _intrface.GetBill(AppointmentId);
         }
     }
 }

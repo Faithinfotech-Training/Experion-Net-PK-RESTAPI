@@ -18,5 +18,7 @@ namespace ClinicManagementSystem.Repository
         Task<Patient> GetByPatientId(int a);
 
         Task<List<Patient>> GetAllPatient();
+
+        Task<BillDetails> GetBill(int AppointmentId);
     }
 }
